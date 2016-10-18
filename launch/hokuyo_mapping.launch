@@ -1,0 +1,14 @@
+<launch>
+
+  <include file="$(find turtlebot_bringup)/launch/minimal.launch"/>
+
+  <!-- Launch the Hokuyo, and add it to the turtlebot tf tree -->
+  <node name="urg_node" pkg="urg_node" type="urg_node"/>
+  <node pkg="tf" type="static_transform_publisher" 
+	name="laser_link_broadcaster" args="0 0 .5 0 0 0 1 base_footprint laser 100" />
+
+
+  <include file="$(find turtlebot_navigation)/launch/includes/gmapping.launch.xml"/>
+  <include file="$(find turtlebot_navigation)/launch/includes/move_base.launch.xml"/>
+
+</launch>
